@@ -1,0 +1,41 @@
+
+/* Admin test output base */
+#deven-test-output { background:#0f172a; color:#e2e8f0; padding:12px; border-radius:8px; border:1px solid #22304a; }
+
+/* Shared markdown presentation */
+.deven-output { max-width: 72ch; line-height: 1.65; }
+.deven-output p { margin: .55em 0; }
+.deven-output ul, .deven-output ol { margin: .6em 1.3em; padding-left: 1.15em; list-style-position: outside; }
+.deven-output li + li { margin-top: .35em; }
+
+/* Bold-as-title + definition blocks */
+.deven-output .md-term { margin: .65em 0 .4em; }
+.deven-output .md-term-title {
+  display: block;
+  font-weight: 800;
+  font-size: 1.08em;
+  line-height: 1.35;
+  margin: 0 0 .15em;
+}
+.deven-output .md-term-desc { margin: 0; }
+.deven-output p > strong:first-child {
+  display: inline-block;
+  font-weight: 800;
+  font-size: 1.05em;
+  margin: 0 .25em .1em 0;
+}
+
+/* Code + blockquote */
+.md-inline-code{ background: rgba(148,163,184,.15); padding: 0 .25em; border-radius: .3em; }
+pre.md-code { background:#0b1220; color:#e2e8f0; border-radius:10px; padding:14px 16px; border:1px solid #22304a; }
+blockquote { border-left:3px solid #22304a; margin:.6em 0; padding:.1em .8em; color:#93a3b8; }
+
+/* Timeline */
+.deven-output .md-timeline { list-style: none; margin: .6em 0 .6em; padding-left: 0; border-left: 2px solid #22304a; }
+.deven-output .md-timeline > li { position: relative; margin: 0; padding: 0 0 .75em 1.1rem; }
+.deven-output .md-timeline > li::before {
+  content: ""; position: absolute; left: -6px; top: .45em; width: 10px; height: 10px; border-radius: 50%;
+  background: #e2e8f0; box-shadow: 0 0 0 2px #0f172a;
+}
+.deven-output .md-timeline .md-term-title { font-size: 1.09em; margin-bottom: .2em; }
+a { color:#60a5fa; text-decoration: underline; }

@@ -1,0 +1,7 @@
+
+/* Minimal highlight theme compatible with our markdown code blocks */
+pre.md-code { background: var(--md-code-bg, #0b1220); color: var(--md-code-tx, #e2e8f0); }
+pre.md-code code { display:block; overflow-x:auto; }
+pre.md-code .hljs-keyword, pre.md-code .hljs-selector-tag { font-weight:700; }
+pre.md-code .hljs-string { opacity:.95; }
+pre.md-code .hljs-comment { opacity:.7; font-style: italic; }

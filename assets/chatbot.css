@@ -1,0 +1,32 @@
+
+/* Chatbot container */
+.deven-chatbot { border:1px solid #e5e7eb; border-radius:16px; display:flex; flex-direction:column; overflow:hidden; background:#fff; }
+.deven-chatbot__header { font-weight:700; padding:12px 14px; border-bottom:1px solid #e5e7eb; background:#f8fafc; }
+.deven-chatbot__messages { flex:1; overflow:auto; padding:12px; display:flex; flex-direction:column; gap:10px; background:#fff; }
+.deven-chatbot__form { display:flex; gap:10px; padding:10px; border-top:1px solid #e5e7eb; background:#f8fafc; }
+.deven-chatbot__input { flex:1; padding:10px 12px; border:1px solid #d1d5db; border-radius:12px; }
+.deven-chatbot__send { padding:10px 14px; border-radius:12px; border:1px solid #d1d5db; background:#fff; cursor:pointer; }
+
+/* Bubbles */
+.deven-chatbot__msg { display:flex; }
+.deven-chatbot__msg--user { justify-content:flex-end; }
+.deven-chatbot__bubble { max-width: 90%; padding:10px 12px; border-radius:14px; line-height:1.55; word-wrap: break-word; }
+.deven-chatbot__msg--bot .deven-chatbot__bubble { background:#eef2f7; color:#0f172a; border:1px solid #e5e7eb; }
+.deven-chatbot__msg--user .deven-chatbot__bubble { background:#111827; color:#fff; border:1px solid transparent; }
+
+/* Markdown shared */
+.deven-output { line-height:1.65; }
+.deven-output ul, .deven-output ol { margin: .6em 1.3em; padding-left: 1.15em; list-style-position: outside; }
+.deven-output li + li { margin-top: .35em; }
+.deven-output .md-term { margin:.65em 0 .4em; }
+.deven-output .md-term-title { display:block; font-weight:800; font-size:1.08em; margin:0 0 .15em; }
+.deven-output .md-term-desc { margin:0; }
+.md-inline-code{ background: rgba(2,6,23,.08); padding:0 .25em; border-radius:.3em; }
+pre.md-code { background:#0b1220; color:#e2e8f0; border-radius:10px; padding:14px 16px; border:1px solid #1e293b; }
+.deven-output .md-timeline { list-style:none; margin:.6em 0; padding-left:0; border-left:2px solid #e5e7eb; }
+.deven-output .md-timeline > li { position:relative; margin:0; padding:0 0 .75em 1.1rem; }
+.deven-output .md-timeline > li::before {
+  content:""; position:absolute; left:-6px; top:.45em; width:10px; height:10px; border-radius:50%; background:#0f172a; box-shadow:0 0 0 2px #fff;
+}
+.deven-output .md-timeline .md-term-title { font-size:1.09em; margin-bottom:.2em; }
+.deven-output a { color:#2563eb; text-decoration: underline; }
