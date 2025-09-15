@@ -110,43 +110,69 @@ blockquote {
   text-decoration: underline;
 }
 
-/* --- Ordered list: native numbering only --- */
-.deven-output ol {
-  list-style: decimal;
-  margin-left: 1.5rem;
-  padding-left: 1.5rem;
-  /* give space for native markers */
-}
-
-.deven-output ol>li {
-  list-style: decimal;
-}
-
-/* Neutralize any global ::marker overrides without adding a second number */
-.deven-output ol>li::marker {
-  content: normal;
-}
-
-/* Headings inside admin test output */
+/* Headings inside admin test output (contrast for dark bg) */
 #deven-test-output h1,
 #deven-test-output h2,
 #deven-test-output h3,
 #deven-test-output h4,
 #deven-test-output h5,
 #deven-test-output h6 {
-  color: #f1f5f9 !important;
-  /* near-white for dark bg */
+  color: #f1f5f9;
   margin: 0.75em 0 0.4em;
   font-weight: 700;
 }
 
-/* Definition / term titles */
 #deven-test-output .md-term-title {
-  color: #f8fafc !important;
-  /* brighter */
+  color: #f8fafc;
 }
 
-/* Strong/inline bold text */
 #deven-test-output strong {
-  color: #e2e8f0 !important;
+  color: #e2e8f0;
+}
+
+/* Robust ordered-list numbering for our renderer only (uses <ol class="md-ol">) */
+.deven-output .md-ol {
+  counter-reset: mdItem;
+  /* start at 0; first li becomes 1 */
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.deven-output .md-ol>li {
+  list-style: none;
+  /* hide native marker completely */
+  counter-increment: mdItem;
+  /* increment counter per item */
+  position: relative;
+  padding-left: 1.75rem;
+  /* space for number */
+}
+
+.deven-output .md-ol>li::marker {
+  content: none;
+}
+
+/* neutralize theme markers */
+.deven-output .md-ol>li::before {
+  content: counter(mdItem) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 600;
+}
+
+/* Nested ordered lists: 1.1, 1.2, ... */
+.deven-output .md-ol .md-ol {
+  counter-reset: mdSub;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.deven-output .md-ol .md-ol>li {
+  counter-increment: mdSub;
+  padding-left: 2.25rem;
+}
+
+.deven-output .md-ol .md-ol>li::before {
+  content: counter(mdItem) "." counter(mdSub) ".";
 }

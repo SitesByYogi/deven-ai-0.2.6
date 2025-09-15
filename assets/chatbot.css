@@ -157,29 +157,31 @@ pre.md-code {
   text-decoration: underline;
 }
 
-/* Chatbot: force reliable numbering with custom counters */
-.deven-chatbot .deven-output ol {
-  counter-reset: devenItem;
+/* Robust ordered-list numbering for our renderer only (uses <ol class="md-ol">) */
+.deven-output .md-ol {
+  counter-reset: mdItem;
+  /* start at 0; first li becomes 1 */
   margin-left: 0;
   padding-left: 0;
 }
 
-.deven-chatbot .deven-output ol>li {
-  list-style: none !important;
-  /* no native markers */
-  counter-increment: devenItem;
+.deven-output .md-ol>li {
+  list-style: none;
+  /* hide native marker completely */
+  counter-increment: mdItem;
+  /* increment counter per item */
   position: relative;
   padding-left: 1.75rem;
   /* space for number */
 }
 
-.deven-chatbot .deven-output ol>li::marker {
-  content: none !important;
-  /* neutralize any theme rules */
+.deven-output .md-ol>li::marker {
+  content: none;
 }
 
-.deven-chatbot .deven-output ol>li::before {
-  content: counter(devenItem) ".";
+/* neutralize theme markers */
+.deven-output .md-ol>li::before {
+  content: counter(mdItem) ".";
   position: absolute;
   left: 0;
   top: 0;
@@ -187,18 +189,17 @@ pre.md-code {
 }
 
 /* Nested ordered lists: 1.1, 1.2, ... */
-.deven-chatbot .deven-output ol ol {
-  counter-reset: subitem;
+.deven-output .md-ol .md-ol {
+  counter-reset: mdSub;
   margin-left: 0;
   padding-left: 0;
 }
 
-.deven-chatbot .deven-output ol ol>li {
-  counter-increment: subitem;
+.deven-output .md-ol .md-ol>li {
+  counter-increment: mdSub;
   padding-left: 2.25rem;
 }
 
-.deven-chatbot .deven-output ol ol>li::before {
-  content: counter(devenItem) "." counter(subitem) ".";
-  left: 0;
+.deven-output .md-ol .md-ol>li::before {
+  content: counter(mdItem) "." counter(mdSub) ".";
 }

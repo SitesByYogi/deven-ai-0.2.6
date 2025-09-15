@@ -85,7 +85,7 @@
     // 10) Ordered lists
     md = md.replace(/(?:^|\n)((?:\d+\. .+(?:\n\d+\. .+)*))/g, (_, group) => {
       const items = group.trim().split('\n').map(x => x.replace(/^\d+\. (.*)$/, '<li>$1</li>')).join('');
-      return '\n<ol>' + items + '</ol>';
+      return '\n<ol class="md-ol">' + items + '</ol>';   // ← add class
     });
 
     // 11) Paragraphs — split on blank lines
@@ -103,7 +103,7 @@
       const start = firstMatch ? parseInt(firstMatch[1], 10) || 1 : 1;
       const items = lines.map(l => l.replace(/^<p>\s*\d+\.\s([\s\S]*?)<\/p>$/, '<li>$1</li>')).join('');
       const startAttr = (start !== 1) ? (' start="' + start + '"') : '';
-      return '<ol' + startAttr + '>' + items + '</ol>';
+      return '<ol class="md-ol"' + startAttr + '>' + items + '</ol>';  // ← add class
     });
 
     // 13) Restore allowed HTML tags
@@ -132,6 +132,14 @@
       md = tagTimeline('ol');
       md = tagTimeline('ul');
     })();
+
+    // 15.5) Merge adjacent <ol class="md-ol"> blocks into a single list
+    md = md.replace(/(?:\s*<ol class="md-ol">[\s\S]*?<\/ol>\s*){2,}/g, (seq) => {
+      const items = Array.from(seq.matchAll(/<ol class="md-ol">([\s\S]*?)<\/ol>/g))
+        .map(m => m[1].trim())
+        .join('');
+      return '<ol class="md-ol">' + items + '</ol>';
+    });
 
     // 16) Restore code fences last
     md = md.replace(/@@FENCE(\d+)@@/g, (_, idx) => {
